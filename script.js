@@ -1,3 +1,12 @@
+let humanScore = 0;
+let computerScore = 0;
+
+const buttons = document.querySelector('.buttons');
+buttons.addEventListener('click', (event) => {
+  let targetedButton = event.target;
+  playRound(getComputerChoice(), getHumanChoice(targetedButton));
+})
+
 function getComputerChoice() {
   let numChoice = Math.floor(Math.random() * 3);
 
@@ -11,30 +20,15 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  return String(prompt("Rock, paper, or scissors?")).toLowerCase();
-}
-
-function printScores() {
-  console.log("You: " + humanScore + "\nComputer: " + computerScore);
-}
-
-function printChoices(humanChoice, computerChoice) {
-  console.log("You chose: " + humanChoice + "\nCPU chose: " + computerChoice);
-}
-
-function printWinner() {
-  if (humanScore > computerScore) {
-    console.log("You won the game! Final scores are: ");
+function getHumanChoice(targetedButton) {
+  switch (targetedButton.id) {
+    case 'rock-button':
+      return "rock";
+    case 'paper-button':
+      return "paper";
+    case 'scissors-button':
+      return "scissors";
   }
-  else if (humanScore < computerScore) {
-    console.log("You lost the game! Final scores are: ");
-  }
-  else {
-    console.log("You tied! Final scores are: ");
-  }
-
-  printScores();
 }
 
 function playRound(computerChoice, humanChoice) {
@@ -67,15 +61,3 @@ function playRound(computerChoice, humanChoice) {
     }
   }
 }
-
-let humanScore = 0;
-let computerScore = 0;
-
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
-
-printChoices(humanChoice, computerChoice);
-
-playRound(humanChoice, computerChoice);
-
-printScores();
