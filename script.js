@@ -1,5 +1,5 @@
 function getComputerChoice() {
-  numChoice = Math.floor(Math.random() * 3);
+  let numChoice = Math.floor(Math.random() * 3);
 
   switch (numChoice) {
     case 0:
@@ -12,8 +12,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  let humanChoice = String(prompt("Rock, paper, or scissors?")).toLowerCase();
-  return humanChoice;
+  return String(prompt("Rock, paper, or scissors?")).toLowerCase();
 }
 
 function printScores() {
@@ -27,9 +26,11 @@ function printChoices(humanChoice, computerChoice) {
 function printWinner() {
   if (humanScore > computerScore) {
     console.log("You won the game! Final scores are: ");
-  } else if (humanScore < computerScore) {
+  }
+  else if (humanScore < computerScore) {
     console.log("You lost the game! Final scores are: ");
-  } else {
+  }
+  else {
     console.log("You tied! Final scores are: ");
   }
 
@@ -39,7 +40,8 @@ function printWinner() {
 function playRound(computerChoice, humanChoice) {
   if (computerChoice === humanChoice) {
     console.log("It's a tie!");
-  } else if (computerChoice === "rock") {
+  }
+  else if (computerChoice === "rock") {
     if (humanChoice === "paper") {
       humanScore++;
       console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
@@ -66,20 +68,14 @@ function playRound(computerChoice, humanChoice) {
   }
 }
 
-function playGame() {
-  for (i = 0; i < 5; i++) {
-    console.log(`Round ${i + 1}:`);
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-
-    printChoices(humanChoice, computerChoice);
-    playRound(humanChoice, computerChoice);
-    printScores();
-  }
-
-  printWinner();
-}
-
 let humanScore = 0;
 let computerScore = 0;
-playGame();
+
+const humanChoice = getHumanChoice();
+const computerChoice = getComputerChoice();
+
+printChoices(humanChoice, computerChoice);
+
+playRound(humanChoice, computerChoice);
+
+printScores();
