@@ -46,12 +46,12 @@ function playRound(humanChoice, computerChoice) {
   p1.textContent = "CPU chose " + computerChoice + ".";
   
   const isGameOver = humanScore + computerScore === GAME_LENGTH;
-  const isHumanLeading = () => humanScore > computerScore;
+  const isHumanLeading = humanScore > computerScore;
   
   if (isGameOver) {
     resetGame();
-
-    if (isHumanLeading()) {
+    
+    if (isHumanLeading) {
       winnerHeader.textContent = "You won the game! Good job!";
     }
     else {
